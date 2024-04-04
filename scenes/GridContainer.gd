@@ -3,6 +3,8 @@ extends GridContainer
 var player_1 = load("res://assets/white-heavy-check-mark.svg")
 var player_2 = load("res://assets/x-letter.svg")
 
+var player_1_turn := true
+
 func _ready() -> void:
 	var children = get_children()
 	for child in children:
@@ -14,7 +16,14 @@ func _ready() -> void:
 
 func _on_button_pressed(child: TextureButton) -> void:
 	# Now 'child' is directly available here as the TextureButton that was pressed
-	print(child)
-	child.texture_normal = player_1
-	child.texture_pressed = player_1
-	child.texture_hover = player_1
+	if player_1_turn:
+		child.texture_normal = player_1
+		child.texture_pressed = player_1
+		child.texture_hover = player_1
+		player_1_turn = false
+	else:
+		child.texture_normal = player_2
+		child.texture_pressed = player_2
+		child.texture_hover = player_2
+		player_1_turn = true
+		
