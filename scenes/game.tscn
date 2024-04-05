@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch1dhpartn5ww"]
+[gd_scene load_steps=7 format=3 uid="uid://ch1dhpartn5ww"]
 
 [ext_resource type="Texture2D" uid="uid://ho48n8f60uc8" path="res://assets/Kenney/panel-transparent-center-009.png" id="2_l13an"]
 [ext_resource type="Script" path="res://scenes/GridContainer.gd" id="2_qqmen"]
 [ext_resource type="Texture2D" uid="uid://duh6ru34n31k1" path="res://assets/Kenney/panel-transparent-center-011.png" id="3_j1xpd"]
 [ext_resource type="Texture2D" uid="uid://1retkxhfnew6" path="res://assets/Kenney/panel-transparent-center-010.png" id="4_y30f7"]
+[ext_resource type="Texture2D" uid="uid://crnseabp8fjsl" path="res://assets/reset.png" id="5_hdsve"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dxw7h"]
 font_size = 75
-font_color = Color(0, 1, 1, 1)
+font_color = Color(1, 0, 0, 1)
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -24,10 +25,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -154.0
-offset_top = -154.0
-offset_right = 154.0
-offset_bottom = 154.0
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -108,6 +109,11 @@ texture_pressed = ExtResource("3_j1xpd")
 texture_hover = ExtResource("4_y30f7")
 stretch_mode = 0
 
+[node name="ResetButton" type="TextureButton" parent="CenterContainer" groups=["reset"]]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("5_hdsve")
+
 [node name="WinningLabel" type="Label" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -121,3 +127,7 @@ offset_bottom = 103.0
 grow_horizontal = 2
 text = "PLAYER 1 WINS!"
 label_settings = SubResource("LabelSettings_dxw7h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="CenterContainer/ResetButton" to="CenterContainer/GridContainer" method="_on_reset_button_pressed"]
